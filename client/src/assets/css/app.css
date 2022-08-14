@@ -1,0 +1,27 @@
+.img-animation-in {
+    -webkit-transition: opacity 1.5s ease-in;
+    transition: opacity 1.5s ease-in;
+    transition-property: opacity;
+    transition-duration: 1.5s;
+    transition-timing-function: ease-in;
+    transition-delay: 0s;
+    opacity: 0;
+}
+
+.img-animation-out {
+    -webkit-transition: opacity 1.5s ease-out;
+    transition: opacity 1.5s ease-out;
+    transition-property: opacity;
+    transition-duration: 1.5s;
+    transition-timing-function: ease-out;
+    transition-delay: 0s;
+    opacity: 0;
+}
+
+.img-animate {
+    opacity: 1;
+}
+
+.animate-box {
+    animation: slide-in 100ms;
+}
