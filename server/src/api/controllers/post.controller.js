@@ -4,11 +4,17 @@ import sharp  from 'sharp'
 import { v4 }  from 'uuid'
 import uid from '../../utils/createUID'
 
+
+/* POST ENDPOINTS */
+
+
+// Get all posts
 export const getHome = async (req, res) => {
     const posts = await Post.find({})
     res.send(posts.reverse())
 }
 
+// Get specific user posts.
 export const getPosts = async (req, res) => {
     const { id } = req.query
     if (!id) return res.status(400).send("Bad field")
@@ -19,6 +25,7 @@ export const getPosts = async (req, res) => {
     res.send(posts)
 }
 
+// Create post with image and content text
 export const createPost = async (req, res) => {
     const { userID, content, date } = req.body
     if (!userID || !content || !date) return res.status(400).send("Bad field")

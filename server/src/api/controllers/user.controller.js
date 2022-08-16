@@ -6,6 +6,11 @@ import sharp from 'sharp'
 import { v4 } from 'uuid'
 import fs from 'fs'
 
+
+/* USER ENDPOINTS */
+
+
+// Get user profile information
 export const getUser = async (req, res) => {
     const { userID, username } = req.query
     if (!userID && !username) return res.status(400).send("Bad field")
@@ -21,6 +26,7 @@ export const getUser = async (req, res) => {
     res.send(user)
 }
 
+// Login with username & password
 export const login = async (req, res) => {
     const { username, password } = req.body
 
@@ -43,6 +49,7 @@ export const login = async (req, res) => {
     res.send(user)
 }
 
+// Create account
 export const register = async (req, res) => {
     const { mail, name, username, password, registerDate } = req.body
     if (!mail || !name || !username || !password || !registerDate)
@@ -71,6 +78,7 @@ export const register = async (req, res) => {
     res.send(user)
 }
 
+// Update user information
 export const updateUser = async (req, res) => {
     const data = req.body
     if (!data) return res.status(400).send("Bad field.");
@@ -91,6 +99,7 @@ export const updateUser = async (req, res) => {
     }, 50);
 }
 
+// Upload profile picture (if have old avatar delete this)
 export const uploadAvatar = async (req, res) => {
     const { id } = req.body
     if (!id) return res.status(400).send("Bad field.");
@@ -131,6 +140,7 @@ export const uploadAvatar = async (req, res) => {
 
 }
 
+// Follow a user
 export const followUser = async (req, res) => {
     const { userID, followToID } = req.body
     if (!userID || !followToID) return res.status(400).send("Bad field.");
@@ -152,6 +162,7 @@ export const followUser = async (req, res) => {
     })
 }
 
+// Unfollow a user
 export const unfollowUser = async (req, res) => {
     const { userID, followToID } = req.body
     if (!userID || !followToID) return res.status(400).send("Bad field.");
@@ -173,6 +184,7 @@ export const unfollowUser = async (req, res) => {
     })
 }
 
+// Delete current profile picture
 export const removeAvatar = async (req, res) => {
     const { id } = req.body
     if (!id) return res.status(400).send("Bad field.");
@@ -195,6 +207,7 @@ export const removeAvatar = async (req, res) => {
     res.send("OK")
 }
 
+// Delete user follower
 export const removeFollower = async (req, res) => {
     const { id, removeID } = req.body
     if (!id) return res.status(400).send("Bad field.");
@@ -204,12 +217,12 @@ export const removeFollower = async (req, res) => {
 
     const removeUser = await User.findOne({ id: removeID })
     if (!removeUser) return res.status(404).send("User not found");
-    
+
     user.followers = user.followers.filter(i => i !== removeID)
     removeUser.following = removeUser.following.filter(i => i !== id)
     user.save()
     removeUser.save()
-    
+
     res.send({
         user: user.followers,
         removeUser: removeUser.following

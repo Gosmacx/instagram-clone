@@ -37,7 +37,7 @@ router.post("/remove-avatar", auth, removeAvatar)
 router.post("/remove-follower", auth, removeFollower)
 
 router.get("/home", getHome)
-router.get("/get-posts", getPosts)
 router.get("/user", getUser)
+router.get("/get-posts", getPosts)
 
 export default router;
