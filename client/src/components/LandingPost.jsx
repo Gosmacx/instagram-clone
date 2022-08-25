@@ -22,6 +22,7 @@ function App({ post, user, selectPost }) {
                     </div>
 
                     <div className='h-full w-full flex items-start px-4 border-b border-[#DBDBDB] mt-3 ' >
+                        {/* Example Comment */}
                         {/* <div className='w-full flex items-center ' >
                             <img src={defaultAvatar} width='28' className='rounded-full self-start' />
                             <div className='leading-3 ml-2 ' >

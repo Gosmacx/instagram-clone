@@ -19,7 +19,10 @@ function App() {
 
     const removeAvatarManager =  () => {
         setAlert(false)
-        removeAvatar({ data: { id: user.id }, token: user.token }, dispatch(removeAvatarStore()))
+        removeAvatar(
+            { data: { id: user.id }, token: user.token }, 
+            dispatch(removeAvatarStore())
+        )
     }
 
     const updateInformation = () => {
@@ -30,7 +33,9 @@ function App() {
             mail: mail ?? user.mail,
             id: user.id
         }
-        updateUser({ data: data, token: user.token}, response => {
+        updateUser(
+            { data: data, token: user.token}, 
+            response => {
             dispatch(loginStore(response))
         })
     }

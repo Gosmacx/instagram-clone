@@ -4,7 +4,7 @@ dotenv.config()
 
 const port = process.env.PORT || 3030
 const app = express()
-app.use("/images", express.static(__dirname + '/images'));
+app.use("/images", express.static(process.env.FILE_STORAGE));
 
 require('./loaders').default({ expressApp: app })
 
