@@ -17,10 +17,10 @@ function App() {
     const [biography, setBiography] = useState(null)
     const [mail, setMail] = useState(null)
 
-    const removeAvatarManager =  () => {
+    const removeAvatarManager = () => {
         setAlert(false)
         removeAvatar(
-            { data: { id: user.id }, token: user.token }, 
+            { data: { id: user.id }, token: user.token },
             dispatch(removeAvatarStore())
         )
     }
@@ -34,17 +34,17 @@ function App() {
             id: user.id
         }
         updateUser(
-            { data: data, token: user.token}, 
+            { data: data, token: user.token },
             response => {
-            dispatch(loginStore(response))
-        })
+                dispatch(loginStore(response))
+            })
     }
 
     const changeAvatar = (e) => {
         const data = new FormData()
         data.append("files", e.target.files[0])
         data.append("id", user.id)
-        uploadAvatar({data: data, token: user.token}, response => {
+        uploadAvatar({ data: data, token: user.token }, response => {
             dispatch(loginStore(response))
             setAlert(false)
         })
@@ -64,7 +64,12 @@ function App() {
                     </div>
                     <button className=' active:bg-gray-200 w-full h-full flex items-center justify-center border-b border-[#DBDBDB] relative ' >
                         <span className='font-bold text-sm text-[#139DF7] ' >Fotoğraf Yükle</span>
-                        <input onInput={changeAvatar} type="file" className='absolute w-full h-full opacity-0 ' />
+                        <input
+                            onInput={changeAvatar}
+                            type="file"
+                            accept="image/jpeg,image/png,image/webp"
+                            className='absolute w-full h-full opacity-0 '
+                        />
                     </button>
                     <button onClick={removeAvatarManager} className=' active:bg-gray-200 w-full h-full flex items-center justify-center border-b border-[#DBDBDB]' >
                         <span className='font-bold text-sm text-red-500'>Mevcut Fotoğrafı Kaldır</span>
@@ -80,7 +85,7 @@ function App() {
 
     if (user.token) return (
         <div className="w-full h-screen flex items-center justify-center pt-[110px] " >
-            <AlertBox/>
+            <AlertBox />
             <div className="w-[933px] mx-auto my-auto h-[839px] bg-white border border-[#DBDBDB] flex " >
                 <nav className="h-full flex flex-col border-r grow border-[#DBDBDB] " >
                     <a href="#" className="w-full py-4 leading-5 pl-[30px] pr-4  font-semibold flex items-center justify-start border-l-2 border-black" >Profili düzenle</a>
