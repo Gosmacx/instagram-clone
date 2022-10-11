@@ -1,6 +1,6 @@
 # instagram-clone
 
-Fully functional mern-stack instagram clone application
+Fully functional mern-stack instagram clone.
 
 ## 💡 Features
 - Auth (Login/Register)
